@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Tool</title>
+    <style>
+        body{
+            background-color: rgb(243, 234, 234);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 10px 20px;
+           
+        }
+        .logo img {
+            height: 100px;
+            margin-top: -20px;
+            margin-left: 150px;
+        }
+        .nav-links a {
+            margin: 0 -50px;
+            text-decoration: none;
+            color: rgb(9, 9, 50);
+            font-weight: bold;
+            font-size: 1.1rem;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-right: 150px;
+        }
+        .box-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 10px; 
+            justify-content: center; 
+            align-items: center; 
+            margin: 20px auto; 
+            width: max-content; 
+            margin-top: -10px;
+        }
+        
+        .box {
+            box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            align-items: center;
+            width: 325px;
+            padding: 15px;
+            text-align: center;
+            background-color:white;
+            border-radius: 20px;
+         }
+        .box img {
+            max-width: 30%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+        .box a {
+            display: block;
+            text-decoration: none;
+            color: rgb(9, 9, 50);;
+            font-weight: bold;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .box a:hover{
+            text-decoration: underline;
+        }
+        p{
+            text-align: justify;
+            padding: 10px;
+            color: black;
+             
+        }
+        h1{
+            text-align: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: rgb(120, 110, 110);
+            margin-top: -10px;
+        }
+        #im{
+        margin-left: 430px;
+        margin-top: -40px;
+
+        }
+    </style>
+</head>
+<body>
+   
+    <nav>
+        <div class="logo">
+            <img src="https://i.ibb.co/kgGKJtN/pop-removebg-preview.png" alt="Logo">
+        </div>
+        <div class="nav-links">
+            {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}">Profile</a> 
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a> 
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+        </div>
+    </nav>
+
+    <h1>My Daily Uses PDF Tools</h1>
+    <img id="im" src="https://i.ibb.co/1fdNcfg/op-removebg-preview.png" alt="">
+
+    <div class="box-container">
+        <div class="box">
+            <img src="https://i.ibb.co/rGy2WDK/pw-removebg-preview.png" alt="PDF to Word">
+            <a href="{% url 'pdf_to_word' %}">PDF to Word</a>
+            <p>Easily convert PDF files into fully editable Word documents without losing formatting or structure.</p>
+        </div>
+        <div class="box">
+            <img src="https://i.ibb.co/BtLzgjt/pdf-ppt.png" alt="PDF to PPT">
+            <a href="{% url 'pdf_to_ppt' %}">PDF to PPT</a>
+            <p>Effortlessly transform PDF documents into interactive PowerPoint presentations with just a few simple steps.</p>
+        </div>
+        <div class="box">
+            <img src="https://i.ibb.co/wCBkYyz/pdf-to-jpg-removebg-preview.png" alt="PDF to JPG">
+            <a href="{% url 'pdf_to_jpg' %}">PDF to JPG</a>
+            <p>Convert PDF pages into high-quality JPG images quickly, making them easy to share or edit.</p>
+        </div>
+        <div class="box">
+            <img src="https://i.ibb.co/DWnR2n4/images.jpg" alt="Lock PDF">
+            <a href="{% url 'lock_pdf' %}">Protect PDF</a>
+            <p>Secure your PDF files by adding password protection to keep your sensitive information safe.</p>
+        </div>
+        <div class="box">
+            <img src="https://i.ibb.co/Dp4t3zG/unlockpdf-removebg-preview.png" alt="Unlock PDF">
+            <a href="{% url 'unlock_pdf' %}">Unlock PDF</a>
+            <p>Unlock password-protected PDF files and access your documents without any restrictions or limitations.</p>
+        </div>
+        <div class="box">
+            <img src="https://i.ibb.co/7gq9Z6h/img-to-pdf-removebg-preview.png" alt="JPG to PDF">
+            <a href="{% url 'jpg_to_pdf' %}">JPG to PDF</a>
+            <p>Quickly convert JPG images into PDF files while preserving their original quality and resolution.</p>
+        </div>
+        <div class="box">
+            <img src="https://i.ibb.co/PC50Qvg/unnamed.png" alt="PPT to PDF">
+            <a href="{% url 'ppt_to_pdf' %}">PPT to PDF</a>
+            <p>Convert PowerPoint presentations into PDF files while maintaining the original layout and design.</p>
+        </div>
+        <div class="box">
+            <img src="https://i.ibb.co/CzSdJkH/wp-removebg-preview.png" alt="Word to PDF">
+            <a href="{% url 'word_to_pdf' %}">Word to PDF</a>
+            <p>Convert Word documents into PDF format, ensuring that your layout and formatting remain intact.</p>
+        </div>
+          
+        <div style="align-items: center;" class="box">
+            <img src="https://i.ibb.co/9yKXBZr/pop-removebg-preview.png" alt="PDF to HTML">
+            <a href="{% url 'pdf_to_html' %}">PDF to HTML</a>
+            <p>Convert PDF files to HTML format for easy editing, viewing, or web publishing for the user.</p>
+        </div>
+        
+        <div style="align-items: center;" class="box">
+            <img src="https://i.ibb.co/2FPpjZv/px-removebg-preview.png" alt="PDF to Excel">
+            <a href="{% url 'pdf_to_excel' %}">PDF to Excel</a>
+            <p>Convert PDF documents into Excel files, making it easier to analyze or manipulate the data.</p>
+        </div>
+        
+        <div style="align-items: center;" class="box">
+            <img src="https://i.ibb.co/Vvk8zh4/xp.png" alt="Excel to PDF">
+            <a href="{% url 'excel_to_pdf' %}">Excel to PDF</a>
+            <p>Convert Excel files into PDF format for easier sharing, printing, or archiving.</p>
+        </div>
+        
+        <div style="align-items: center;" class="box">
+            <img src="https://i.ibb.co/Dfs8KCz/html-to-pdf-removebg-preview.png" alt="Html to PDF">
+            <a href="{% url 'html_to_pdf' %}">HTML to PDF</a>
+            <p>Convert HTML web pages into PDF format for offline viewing or printing make then easier to handle for user.</p>
+        </div>
+        
+   
+        <div class="box">
+            <img src="https://i.ibb.co/W2rYKmn/unnamed-1.png" alt="Merge PDF">
+            <a href="{% url 'merge_pdf' %}">Merge PDF</a>
+            <p>Merge multiple PDF files into a single document to organize and simplify your file management.</p>
+        </div>
+        <div style="align-items: center;" class="box">
+            <img src="https://i.ibb.co/9swvKbj/split-removebg-preview-1.png" alt="PDF to Word">
+            <a href="{% url 'split_pdf' %}">Split PDF</a>
+            <p>Split large PDF files into smaller, more manageable documents to make them easier to handle</p>
+        </div>
+
+        <div style="align-items: center;" class="box">
+            <img style="height: 100px" src="https://i.ibb.co/mD49D7g/Addwatermarkkk.png" alt="PDF to Word">
+            <a href="{% url 'add_watermark' %}">Add Watermark</a>
+            <p>Add a watermark to your PDF to enhance security or branding.</p>
+        </div>
+        
+        <div style="align-items: center;" class="box">
+            <img style="height: 100px;" src="https://i.ibb.co/6ZNnStW/roate-removebg-preview.png" alt="PDF to Word">
+            <a href="{% url 'rotate_pdf' %}">Rotate PDF</a>
+            <p>Rotate your PDF pages to the desired orientation easily.</p>
+        </div>
+        
+        <div style="align-items: center;" class="box">
+            <img src="https://i.ibb.co/3FTrLhc/com.png" alt="PDF to Word">
+            <a href="{% url 'compress_pdf' %}">Compress PDF</a>
+            <p>Compress your PDF files to reduce their size while maintaining quality.</p>
+        </div>
+        
+        <div style="align-items: center;" class="box">
+            <img src="https://i.ibb.co/4SyRtfw/ocr.png" alt="PDF to Word">
+            <a href="{% url 'ocr_pdf' %}">OCR PDF</a>
+            <p>Convert scanned PDF files into editable and searchable documents.</p>
+        </div>
+        
+        <div style="align-items: center;" class="box">
+            <img style="height: 100px;" src="https://i.ibb.co/0VsswLh/number.jpg" alt="PDF to Word">
+            <a href="{% url 'add_numbering_pdf' %}">Add Number</a>
+            <p>Add page numbers to your PDF for better organization and readability.</p>
+        </div>
+        
+        <div style="align-items: center;" class="box">
+            <img style="height: 100px; " src="https://i.ibb.co/N7fttYS/sign.png" alt="PDF to Word">
+            <a href="{% url 'sign_pdf' %}">Sign PDF</a>
+            <p>Add a digital signature to your PDF to authenticate and secure it.</p>
+        </div>
+        
+
+           </div>
+    
+</body>
+</html>

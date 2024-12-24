@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to Word</title>
+    <style>
+        body {
+            background-color: rgb(243, 234, 234);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 10px 20px;
+            
+        }
+
+        .logo img {
+            height: 100px;
+            margin-top: -20px;
+            margin-left: 150px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: rgb(9, 9, 50);
+            font-weight: bold;
+            font-size: 1.1rem;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-right: 250px;
+            
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            color: rgb(120, 110, 110);
+            margin-top: 20px;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+            margin-top: 20px;
+            margin-top: -33px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            margin-left: -270px;
+        }
+
+        input[type="file"] {
+            display: block;
+            margin: 0 auto 20px auto;
+            font-size: 1rem;
+            padding: 5px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        button {
+            background-color: rgb(9, 9, 50);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        #im {
+            width: 35%;
+            display: block;
+            margin: 20px auto;
+            margin-top: -38px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="https://i.ibb.co/kgGKJtN/pop-removebg-preview.png" alt="Logo">
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'index' %}">Home</a>
+         
+        </div>
+    </nav>
+
+    <h1>{{ feature }}</h1>
+
+    <img id="im" src="https://i.ibb.co/1fdNcfg/op-removebg-preview.png" alt="Feature Image">
+
+    <div class="form-container">
+        <form method="post" enctype="multipart/form-data" onsubmit="validateFileInput(event)">
+            {% csrf_token %}
+            <label for="file">Choose File:</label>
+
+                <input type="file" name="file" id="file" 
+                {% if feature in "JPG to PDF Merge PDF" %}multiple{% endif %} required>
+            <button type="submit">
+                {% if feature == "Merge PDF" %}Merge{% else %}Convert{% endif %}
+            </button>
+        </form>
+    </div>
+
+    <script>
+        function validateFileInput(event) {
+            const fileInput = document.getElementById("file");
+            const filePath = fileInput.value;
+            const allowedExtensions = /(\.pdf)$/i; 
+
+            if (!allowedExtensions.exec(filePath)) {
+                alert("Only PDF files are supported!");
+                fileInput.value = ""; 
+                event.preventDefault(); 
+            }
+        }
+    </script>
+</body>
+</html>

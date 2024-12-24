@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account</title>
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(243, 234, 234);
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        header img {
+            height: 100px;
+            margin-top: -20px;
+            margin-left: 150px;
+        }
+      
+        header nav a {
+            color: rgb(4, 4, 47);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-right: 120px;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+        .delete-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            margin: 10px auto;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        form button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: white;
+            background-color: rgb(138, 10, 10);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #a71d2a;
+         
+        }
+      
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="https://i.ibb.co/kgGKJtN/pop-removebg-preview.png" alt="Logo">
+        <nav>
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </nav>
+    </header>
+    <div class="delete-container">
+        <h2>Delete Account</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+                <p class="message">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <p>Are you sure you want to delete your account?</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit">Yes, Delete</button>
+            <br><br>
+            <a class="can" style=" color: rgb(17, 85, 17);
+
+            font-family: Verdana, Geneva, Tahoma, sans-serif;font-size:1rem;" href="{% url 'profile' %}">cancel</a>
+        </form>
+    </div>
+
+</body>
+
+</html>
